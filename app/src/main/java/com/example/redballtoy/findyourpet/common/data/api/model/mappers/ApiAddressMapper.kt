@@ -1,4 +1,4 @@
-package com.example.redballtoy.findyourpet.common.data.api.model.mapper
+package com.example.redballtoy.findyourpet.common.data.api.model.mappers
 
 import com.example.redballtoy.findyourpet.common.data.api.model.ApiAddress
 import com.example.redballtoy.findyourpet.common.domain.model.organization.Organization

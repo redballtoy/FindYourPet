@@ -27,5 +27,7 @@ data class Media(
         }
     }
 
-    data class Video(val video: String)
+    data class Video(
+        val video: String
+    )
 }
