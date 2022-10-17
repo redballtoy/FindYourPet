@@ -1,10 +1,10 @@
 package com.example.redballtoy.findyourpet.common.domain.model.animal.details
 
-import android.provider.CalendarContract.Colors
+
 import com.example.redballtoy.findyourpet.common.domain.model.organization.Organization
 
 data class Details(
-    val descriotion: String,
+    val description: String,
     val age: Age,
     val species: String,
     val breed: Breed,
