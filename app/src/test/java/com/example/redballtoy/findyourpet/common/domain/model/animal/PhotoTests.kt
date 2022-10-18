@@ -1,5 +1,6 @@
 package com.example.redballtoy.findyourpet.common.domain.model.animal
 
+import com.example.redballtoy.findyourpet.core.domain.model.animal.Media
 import junit.framework.Assert.assertEquals
 import org.junit.Test
 
