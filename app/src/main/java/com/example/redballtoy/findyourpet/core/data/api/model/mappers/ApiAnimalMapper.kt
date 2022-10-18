@@ -18,16 +18,16 @@ class ApiAnimalMapper @Inject constructor(
     private val apiVideoMapper: ApiVideoMapper,
     private val apiContactMapper: ApiContactMapper
 ) : ApiMapper<ApiAnimal, AnimalWithDetails> {
-    override fun mapToDomain(apiAnimal: ApiAnimal): AnimalWithDetails {
+    override fun mapToDomain(apiEntity: ApiAnimal): AnimalWithDetails {
         return AnimalWithDetails(
-            id = apiAnimal?.id ?: throw MappingException("Animal Id cannot be null"),
-            name = apiAnimal.name.orEmpty(),
-            type = apiAnimal.type.orEmpty(),
-            details = parseAnimalDetails(apiAnimal),
-            media = mapMedia(apiAnimal),
-            tags = apiAnimal.tags.orEmpty().map { it.orEmpty() },
-            adoptionStatus = parseAdoptionStatus(apiAnimal.status),
-            publishedAt = DateTimeUtils.parse(apiAnimal.publishedAt.orEmpty())//throws exception if empty
+            id = apiEntity.id ?: throw MappingException("Animal Id cannot be null"),
+            name = apiEntity.name.orEmpty(),
+            type = apiEntity.type.orEmpty(),
+            details = parseAnimalDetails(apiEntity),
+            media = mapMedia(apiEntity),
+            tags = apiEntity.tags.orEmpty().map { it.orEmpty() },
+            adoptionStatus = parseAdoptionStatus(apiEntity.status),
+            publishedAt = DateTimeUtils.parse(apiEntity.publishedAt.orEmpty())//throws exception if empty
 
 
         )
