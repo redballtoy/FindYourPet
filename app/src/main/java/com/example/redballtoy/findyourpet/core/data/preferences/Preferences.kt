@@ -1,6 +1,6 @@
 package com.example.redballtoy.findyourpet.core.data.preferences
 
-interface Preferenses {
+interface Preferences {
     fun putToken(token: String)
 
     fun putTokenExpirationTime(time: Long)
