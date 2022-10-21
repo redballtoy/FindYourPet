@@ -5,6 +5,7 @@ import com.example.redballtoy.findyourpet.core.data.api.ApiConstants
 import com.example.redballtoy.findyourpet.core.data.api.PetFinderApi
 import com.example.redballtoy.findyourpet.core.data.api.interceptors.AuthenticationInterceptor
 import com.example.redballtoy.findyourpet.core.data.api.interceptors.LoggingInterceptor
+import com.example.redballtoy.findyourpet.core.data.api.interceptors.NetworkStatusInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -46,22 +47,13 @@ object ApiModule {
     @Provides
     fun provideOkHttpClient(
         httpLoggingInterceptor: HttpLoggingInterceptor,
+        networkStatusInterceptor: NetworkStatusInterceptor,
         authentionInterceptor: AuthenticationInterceptor
     ): OkHttpClient {
-        val hostname = "**.petfinder.com"
-        val certificatePinner = CertificatePinner.Builder()
-            .add(hostname, "sha256/U8zLlKBQLcRpbcte+Y0kpfoe0pMz+ABQqhAdPlPtf7M=")
-            .add(hostname, "sha256/JSMzqOOrtyOT1kmau6zKhgT676hGgczD5VMdRMyJZFA=")
-            .build()
-        val ctInterceptor = certificateTransparencyInterceptor {
-            +"*.petfinder.com"
-            +"petfinder.com"
-        }
         return OkHttpClient.Builder()
-            .certificatePinner(certificatePinner)
-            .addNetworkInterceptor(ctInterceptor)
+            .addInterceptor(networkStatusInterceptor)
             .addInterceptor(authentionInterceptor)
-            .cache(null)
+            .addInterceptor(httpLoggingInterceptor)
             .build()
     }
 
