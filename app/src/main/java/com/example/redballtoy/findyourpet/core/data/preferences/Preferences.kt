@@ -9,7 +9,7 @@ interface Preferences {
 
     fun getToken():String
 
-    fun getTokenExoirationTime(): Long
+    fun getTokenExpirationTime(): Long
 
     fun getTokenType(): String
 

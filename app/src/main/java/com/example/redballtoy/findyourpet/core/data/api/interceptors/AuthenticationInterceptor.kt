@@ -30,7 +30,7 @@ class AuthenticationInterceptor @Inject constructor(
     override fun intercept(chain: Interceptor.Chain): Response {
 
         val token = preferences.getToken()
-        val tokenExpirationTime = Instant.ofEpochSecond(preferences.getTokenExoirationTime())
+        val tokenExpirationTime = Instant.ofEpochSecond(preferences.getTokenExpirationTime())
 
         // For requests that don't need authentication
         //if(chain.request().headers[NO_AUTH_HEADER] != null) return chain.proceed(request)
