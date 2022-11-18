@@ -19,8 +19,5 @@ import androidx.room.PrimaryKey
     indices = [Index("animalId")]
 )
 
-data class CachedVideo(
-    @PrimaryKey
-) {
 
 }
