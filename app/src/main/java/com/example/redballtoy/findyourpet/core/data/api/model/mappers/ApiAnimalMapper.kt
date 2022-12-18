@@ -2,10 +2,11 @@ package com.example.redballtoy.findyourpet.core.data.api.model.mappers
 
 import com.example.redballtoy.findyourpet.core.data.api.model.ApiAnimal
 import com.example.redballtoy.findyourpet.core.domain.model.animal.AdoptionStatus
+import com.example.redballtoy.findyourpet.core.domain.model.animal.AnimalWithDetails
+import com.example.redballtoy.findyourpet.core.domain.model.animal.AnimalWithDetails.*
 import com.example.redballtoy.findyourpet.core.domain.model.animal.Media
 import com.example.redballtoy.findyourpet.core.domain.model.organization.Organization
 import com.example.redballtoy.findyourpet.core.utils.DateTimeUtils
-import com.example.redballtoy.findyourpet.core.domain.model.animal.details.*
 import java.util.*
 import javax.inject.Inject
 
@@ -72,26 +73,26 @@ class ApiAnimalMapper @Inject constructor(
         )
     }
 
-    private fun parseCoatAnimal(coat: String?): Coat {
-        if (coat.isNullOrEmpty()) return Coat.UNKNOWN
-        return Coat.valueOf(coat.uppercase(Locale.ROOT))
+    private fun parseCoatAnimal(coat: String?): Details.Coat {
+        if (coat.isNullOrEmpty()) return Details.Coat.UNKNOWN
+        return Details.Coat.valueOf(coat.uppercase(Locale.ROOT))
     }
 
-    private fun parseSizeAnimal(size: String?): Size {
-        if (size.isNullOrEmpty()) return Size.UNKNOWN
-        return Size.valueOf(size.replace(' ', '_').uppercase(Locale.ROOT))
+    private fun parseSizeAnimal(size: String?): Details.Size {
+        if (size.isNullOrEmpty()) return Details.Size.UNKNOWN
+        return Details.Size.valueOf(size.replace(' ', '_').uppercase(Locale.ROOT))
     }
 
-    private fun parseGender(gender: String?): Gender {
-        if (gender.isNullOrEmpty()) return Gender.UNKNOWN
-        return Gender.valueOf(gender.uppercase(Locale.ROOT))
+    private fun parseGender(gender: String?): Details.Gender {
+        if (gender.isNullOrEmpty()) return Details.Gender.UNKNOWN
+        return Details.Gender.valueOf(gender.uppercase(Locale.ROOT))
 
     }
 
-    private fun parseAge(age: String?): Age {
-        if (age.isNullOrEmpty()) return Age.UNKNOWN
+    private fun parseAge(age: String?): Details.Age {
+        if (age.isNullOrEmpty()) return Details.Age.UNKNOWN
 
         //will throw IllegalStateException if the string does not match any enum value
-        return Age.valueOf(age.uppercase(Locale.ROOT))
+        return Details.Age.valueOf(age.uppercase(Locale.ROOT))
     }
 }

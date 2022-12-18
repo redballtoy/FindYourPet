@@ -8,7 +8,9 @@ import androidx.room.PrimaryKey
 import com.example.redballtoy.findyourpet.core.data.cache.model.cachedorganization.CachedOrganization
 import com.example.redballtoy.findyourpet.core.domain.model.animal.AdoptionStatus
 import com.example.redballtoy.findyourpet.core.domain.model.animal.Media
-import com.example.redballtoy.findyourpet.core.domain.model.animal.details.AnimalWithDetails
+import com.example.redballtoy.findyourpet.core.domain.model.animal.AnimalWithDetails
+import com.example.redballtoy.findyourpet.core.domain.model.animal.AnimalWithDetails.*
+import com.example.redballtoy.findyourpet.core.domain.model.animal.AnimalWithDetails.Details.*
 import com.example.redballtoy.findyourpet.core.utils.DateTimeUtils
 
 @Entity(
@@ -26,7 +28,7 @@ import com.example.redballtoy.findyourpet.core.utils.DateTimeUtils
 data class CachedAnimalWithDetails(
     @PrimaryKey(autoGenerate = false)
     val animalId: Long,
-    val orgavizationId: String,
+    val organizationId: String,
     val name: String,
     val type: String,
     val description: String,
@@ -58,7 +60,7 @@ data class CachedAnimalWithDetails(
 
             return CachedAnimalWithDetails(
                 animalId = domainModel.id,
-                orgavizationId = details.organization.id,
+                organizationId = details.organization.id,
                 name = domainModel.name,
                 type = domainModel.type,
                 description = details.description,
@@ -90,7 +92,7 @@ data class CachedAnimalWithDetails(
         videos:List<CachedVideo>,
         tags: List<CachedTag>,
         organization: CachedOrganization
-    ):AnimalWithDetails{
+    ): AnimalWithDetails {
         return AnimalWithDetails(
             id = animalId,
             name=name,
@@ -106,4 +108,19 @@ data class CachedAnimalWithDetails(
         )
     }
 
+    private fun mapDetails(organization: CachedOrganization): Details {
+        return Details(
+            description=description,
+            age= Age.valueOf(age),
+            species=species,
+            breed = Breed(primaryBreed,secondaryBreed),
+            colors = Colors(primaryColor,secondaryColor,tertiaryColor),
+            gender = Gender.valueOf(size),
+            size=Size.valueOf(size),
+            coat = Coat.valueOf(coat),
+            healthDetails = HealthDetails(isSpayedOrNeutered,isDeclawed,hasSpecialNeeds,shotsAreCurrent),
+            habitatAdaptation=HabitatAdaptation(goodWithChildren,goodWithDogs,goodWithCats),
+            organization = organization.toDomain()
+        )
+    }
 }

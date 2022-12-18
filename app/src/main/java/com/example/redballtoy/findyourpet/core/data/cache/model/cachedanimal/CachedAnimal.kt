@@ -1,7 +1,9 @@
 package com.example.redballtoy.findyourpet.core.data.cache.model.cachedanimal
 
+import com.example.redballtoy.findyourpet.core.domain.model.animal.AdoptionStatus
 import com.example.redballtoy.findyourpet.core.domain.model.animal.Animal
 import com.example.redballtoy.findyourpet.core.domain.model.animal.Media
+import com.example.redballtoy.findyourpet.core.utils.DateTimeUtils
 
 data class CachedAnimal(
     val animalId: Long,
@@ -34,7 +36,8 @@ data class CachedAnimal(
                 videos = videos.map { it.toDomain() }
             ),
             tags.map { it.tag },
-
-            )
+            AdoptionStatus.valueOf(adoptionStatus),
+            DateTimeUtils.parse(publishedAt)
+        )
     }
 }

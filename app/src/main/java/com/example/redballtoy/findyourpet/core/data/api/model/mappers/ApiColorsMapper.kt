@@ -1,7 +1,9 @@
 package com.example.redballtoy.findyourpet.core.data.api.model.mappers
 
 import com.example.redballtoy.findyourpet.core.data.api.model.ApiColors
-import com.example.redballtoy.findyourpet.core.domain.model.animal.details.Colors
+import com.example.redballtoy.findyourpet.core.domain.model.animal.AnimalWithDetails
+import com.example.redballtoy.findyourpet.core.domain.model.animal.AnimalWithDetails.*
+import com.example.redballtoy.findyourpet.core.domain.model.animal.AnimalWithDetails.Details.*
 import javax.inject.Inject
 
 class ApiColorsMapper @Inject constructor() : ApiMapper<ApiColors?, Colors> {
