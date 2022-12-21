@@ -4,6 +4,14 @@ data class Media(
     val photos: List<Photo>,
     val videos: List<Video>
 ) {
+    companion object {
+        const val NO_MEDIA = ""
+    }
+
+    fun getFirstSmallestAvailablePhoto(): String {
+        if (photos.isEmpty()) return NO_MEDIA
+        return photos.first().getSmallestAvailablePhoto()
+    }
 
 
     data class Photo(

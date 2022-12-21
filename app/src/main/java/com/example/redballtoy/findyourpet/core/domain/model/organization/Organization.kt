@@ -1,7 +1,5 @@
 package com.example.redballtoy.findyourpet.core.domain.model.organization
 
-import android.location.Address
-
 data class Organization(
     val id: String,
     val contact: Contact,
